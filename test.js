@@ -42,13 +42,13 @@ zBox.material.emissiveColor = new BABYLON.Color4(0, 0, 1, 1);
 var the_ship = undefined;
 
 BABYLON.SceneLoader.ImportMesh("", "models/", "spaceship-beginner.babylon", scene, function (newMeshes, particleSystems) {
-	console.log(newMeshes);
+	//console.log(newMeshes);
 	for (var i = 0; i < newMeshes.length; i++) {
-		// if (i == 9) {
-		// 	continue;
-		// }
-		console.log(newMeshes[i].position);
-		//newMeshes[i].parent = newMeshes[9];
+		if (i == 9) {
+			continue;
+		}
+		console.log(newMeshes[i].name);
+		newMeshes[i].parent = newMeshes[9];
 		//newMeshes[i].scaling = new BABYLON.Vector3(0.05, 0.05, 0.05);
 		//newMeshes[i].position = new BABYLON.Vector3(0, 10, 0);
 		//newMeshes[i].rotation = new BABYLON.Vector3(Math.PI/2, 0, 0);
@@ -58,22 +58,24 @@ BABYLON.SceneLoader.ImportMesh("", "models/", "spaceship-beginner.babylon", scen
 		// console.log(newPivotMatrix);
 		//newMeshes[i].setPivotMatrix(newPivotMatrix);
 		//var newTransformMatrix = BABYLON.Matrix.RotationX(Math.PI/2);
+		//newMeshes[i].setPivotMatrix(newTransformMatrix);
 		//newMeshes[i].applyTransform(newTransformMatrix);
 	}
-	// the_ship = newMeshes[9];
-	// newMeshes[9].rotation = new BABYLON.Vector3(Math.PI/2, 0, 0);
+	the_ship = newMeshes[9];
+	newMeshes[9].rotation = new BABYLON.Vector3(-Math.PI/2, Math.PI/2, Math.PI/2);
 	// var transform = BABYLON.Matrix.RotationX(0);
 	// for (var i = 0; i < newMeshes.length; i++) {
 	// 	newMeshes[i].applyTransform(transform);
 	// }
 	// newMeshes[9].applyTransform(transform);
+	//console.log(newMeshes);
 });
 
 // this is the pre-render update() loop
 scene.registerBeforeRender(function () {
 	
 	// if (the_ship != undefined) {
-	// 	the_ship.rotation.y += 0.01;
+	// 	the_ship.position.y += 0.1;
 	// }
 	
 	light.position = camera.position;
